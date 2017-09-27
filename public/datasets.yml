@@ -1,0 +1,72 @@
+comm_demo:
+  slug: comm_demo
+  name: Commercial Demolitions
+  source: 
+    type: socrata
+    url: niaj-6fdd
+    params:
+      $select: location, address, parcel_id, status
+      $limit: 10000
+  layers:
+    - name: Completed
+      type: circle
+      filter: ['in', 'status', 'Demolished']
+      layout:
+        visibility: visible
+      paint:
+        circle-color: red
+        circle-radius:
+          stops:
+            - [9, 1]
+            - [18, 10]
+    - name: Contracted
+      type: circle
+      filter: ['in', 'status', 'Demo Contracted']
+      layout:
+        visibility: visible
+      paint:
+        circle-color: blue
+        circle-radius:
+          stops:
+            - [9, 1]
+            - [18, 10]
+    - name: Pipeline
+      type: circle
+      filter: ['in', 'status', 'Demo Pipeline']
+      layout:
+        visibility: visible
+      paint:
+        circle-color: green
+        circle-radius:
+          stops:
+            - [9, 1]
+            - [18, 10]
+  popup:
+    title: Commercial Demolition
+    columns:
+      - field: address
+        name: Address
+        type: text
+      - field: status
+        name: Status
+        type: text
+side_lot_sales:
+  slug: side_lot_sales
+  name: Side Lot Sales
+  source:
+    type: socrata
+    url: j4fm-e95k
+    params:
+      $select: location, address, parcel_id, final_sale_price
+      $limit: 10000
+  layers:
+    - name: Sales
+      type: circle
+      layout:
+        visibility: visible
+      paint:
+        circle-color: green
+        circle-radius:
+          stops:
+            - [9, 0.25]
+            - [18, 5]
