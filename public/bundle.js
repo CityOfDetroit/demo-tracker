@@ -43939,7 +43939,12 @@ var Helpers = {
         return value;
         break;
       case "date":
-        return moment(value).format('ll');
+        console.log(value);
+        if (value != 'null') {
+          return moment(value).format('ll');
+        } else {
+          return '-';
+        }
         break;
       case "money":
         return '$' + parseInt(value).toFixed(2);
@@ -43975,7 +43980,7 @@ var Legend = {
       var style = layer.legend.join("");
       console.log(style);
     }
-    div.innerHTML = "\n          <div id=\"" + layer.layer_name + "_icon\" class=\"legend-icon\" style=\"" + (layer.legend ? layer.legend.join("") : '') + "\"> </div>\n          <input type=\"checkbox\" id=\"" + layer.layer_name + "\" checked=\"true\" value=\"" + layer.layer_name + "\">\n          <label for=\"" + layer.layer_name + "\">" + layer.name + "</label>";
+    div.innerHTML = "\n          <div id=\"" + layer.layer_name + "_icon\" class=\"legend-icon\" style=\"" + (layer.legend ? layer.legend.join("") : '') + "\"> </div>\n          <input type=\"checkbox\" class=\"layer-toggle\" id=\"" + layer.layer_name + "\" value=\"" + layer.layer_name + "\">\n          <label for=\"" + layer.layer_name + "\">" + layer.name + "</label>";
     categoryUl.appendChild(div);
     return div;
   }
@@ -43984,6 +43989,44 @@ var Legend = {
 exports.default = Legend;
 
 },{"lodash":1}],17:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _helpers = require('./helpers.js');
+
+var _helpers2 = _interopRequireDefault(_helpers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Locate = {
+  /**
+   * Send an address to the geocoder.
+   * @param {string} address a street address in the CoD
+   * @returns {Promise} res
+   */
+  geocodeAddress: function geocodeAddress(address) {
+    var geocodeURL = 'https://gis.detroitmi.gov/arcgis/rest/services/DoIT/CompositeGeocoder/GeocodeServer/findAddressCandidates?';
+    var params = {
+      'Street': '',
+      'City': '',
+      'outSR': '4326',
+      'outFields': '*',
+      'SingleLine': address,
+      'f': 'pjson'
+    };
+    return fetch(geocodeURL + _helpers2.default.makeParamString(params)).then(function (r) {
+      var res = r.json();
+      return res;
+    });
+  }
+};
+
+exports.default = Locate;
+
+},{"./helpers.js":15}],18:[function(require,module,exports){
 'use strict';
 
 var _helpers = require('./helpers.js');
@@ -44001,6 +44044,10 @@ var _map2 = _interopRequireDefault(_map);
 var _legend = require('./legend.js');
 
 var _legend2 = _interopRequireDefault(_legend);
+
+var _locate = require('./locate.js');
+
+var _locate2 = _interopRequireDefault(_locate);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44060,8 +44107,18 @@ map.on('load', function () {
         });
     });
 
+    // mouseover/mouseout
+    interactiveLayers.forEach(function (il) {
+        map.on('mouseenter', il, function (e) {
+            map.getCanvas().style.cursor = 'crosshair';
+        });
+        map.on('mouseout', il, function (e) {
+            map.getCanvas().style.cursor = '';
+        });
+    });
+
     // add event listeners
-    var inputs = document.querySelectorAll("input");
+    var inputs = document.querySelectorAll(".layer-toggle");
     inputs.forEach(function (i) {
         i.addEventListener("change", function (c) {
             var layer = c.target.value;
@@ -44071,6 +44128,17 @@ map.on('load', function () {
                 map.setLayoutProperty(layer, "visibility", "none");
             }
         });
+    });
+
+    var search = document.querySelector("#locate");
+    search.addEventListener("keypress", function (e) {
+        if (e.key == 'Enter') {
+            _locate2.default.geocodeAddress(e.target.value).then(function (result) {
+                console.log(result);
+                var coords = result['candidates'][0]['location'];
+                map.flyTo({ center: [coords.x, coords.y], zoom: 15 });
+            });
+        }
     });
 
     // add popup listener on interactiveLayers
@@ -44086,7 +44154,7 @@ map.on('load', function () {
     });
 });
 
-},{"./helpers.js":15,"./legend.js":16,"./map.js":18,"./socrata.js":19,"lodash":1,"mapbox-gl":2,"yamljs":14}],18:[function(require,module,exports){
+},{"./helpers.js":15,"./legend.js":16,"./locate.js":17,"./map.js":19,"./socrata.js":20,"lodash":1,"mapbox-gl":2,"yamljs":14}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44128,7 +44196,7 @@ var Map = {
 
 exports.default = Map;
 
-},{"./helpers.js":15,"mapbox-gl":2}],19:[function(require,module,exports){
+},{"./helpers.js":15,"mapbox-gl":2}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44149,4 +44217,4 @@ var Socrata = {
 
 exports.default = Socrata;
 
-},{"./helpers.js":15}]},{},[17]);
+},{"./helpers.js":15}]},{},[18]);

@@ -6,6 +6,7 @@ import Helpers from './helpers.js'
 import Socrata from './socrata.js'
 import Map from './map.js'
 import Legend from './legend.js'
+import Locate from './locate.js'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2l0eW9mZGV0cm9pdCIsImEiOiJjaXZvOWhnM3QwMTQzMnRtdWhyYnk5dTFyIn0.FZMFi0-hvA60KYnI-KivWg';
 
@@ -59,8 +60,18 @@ map.on('load', function() {
         }))
     }))
 
+    // mouseover/mouseout
+    interactiveLayers.forEach(il => {
+        map.on('mouseenter', il, function (e) {
+            map.getCanvas().style.cursor = 'crosshair'
+        });
+        map.on('mouseout', il, function (e) {
+            map.getCanvas().style.cursor = ''
+        });
+    })
+
     // add event listeners
-    let inputs = document.querySelectorAll("input")
+    let inputs = document.querySelectorAll(".layer-toggle")
     inputs.forEach(i => {
         i.addEventListener("change", c => {
             let layer = c.target.value
@@ -71,6 +82,17 @@ map.on('load', function() {
                 map.setLayoutProperty(layer, "visibility", "none")
             }
         })
+    })
+
+    let search = document.querySelector("#locate")
+    search.addEventListener("keypress", e => {
+        if(e.key == 'Enter') {
+            Locate.geocodeAddress(e.target.value).then(result => {
+                console.log(result)
+                let coords = result['candidates'][0]['location']
+                map.flyTo({center: [coords.x, coords.y], zoom: 15})
+            })
+        }
     })
 
     // add popup listener on interactiveLayers

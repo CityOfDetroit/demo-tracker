@@ -18,7 +18,7 @@ const Legend = {
     }
     div.innerHTML = `
           <div id="${layer.layer_name}_icon" class="legend-icon" style="${layer.legend ? layer.legend.join("") : ''}"> </div>
-          <input type="checkbox" id="${layer.layer_name}" checked="true" value="${layer.layer_name}">
+          <input type="checkbox" class="layer-toggle" id="${layer.layer_name}" value="${layer.layer_name}">
           <label for="${layer.layer_name}">${layer.name}</label>`
     categoryUl.appendChild(div)
     return div

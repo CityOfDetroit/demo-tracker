@@ -15,7 +15,11 @@ const Helpers = {
         return value
         break;
       case "date":
-        return moment(value).format('ll')
+        console.log(value)
+        if (value != 'null') {
+          return moment(value).format('ll')          
+        }
+        else { return '-' }
         break;
       case "money":
         return '$' + parseInt(value).toFixed(2)
