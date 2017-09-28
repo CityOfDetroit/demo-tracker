@@ -43968,7 +43968,7 @@ var Legend = {
   addCategory: function addCategory(legendDiv, layer) {
     var div = document.createElement("div");
     div.id = "" + layer.slug;
-    div.innerHTML = "<h5>" + layer.name + "</h5><div class='legend-layer-list'></div>";
+    div.innerHTML = "<h5>" + layer.name + " <a href=\"https://data.detroitmi.gov/d/" + layer.source.url + "\">(link)</a></h5><div class='legend-layer-list'></div>";
     legendDiv.appendChild(div);
     return div;
   },
