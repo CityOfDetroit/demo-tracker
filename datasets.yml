@@ -87,14 +87,20 @@ res_demos:
         icon-size:
           stops:
             - [9, 0.1]
-            - [15, 0.5]
+            - [15, 0.75]
             - [19, 2]
         icon-allow-overlap: true
       paint:
         icon-opacity:
           stops:
-            - [9, 0.5]
-            - [18, 1]
+            - [9, 0.2]
+            - [19, 1]
+  popup:
+    title: Residential Demolition
+    columns:
+      - field: address
+        type: text
+        name: Address
 side_lot_sales:
   slug: side_lot_sales
   name: Side Lot Sales
