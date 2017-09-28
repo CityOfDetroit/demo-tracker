@@ -10,9 +10,9 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2l0eW9mZGV0cm9pdCIsImEiOiJjaXZvOWhnM3QwMTQzM
 
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/cityofdetroit/cj83j8qsl01ya2rt93p7a4kxv',
+    style: 'mapbox://styles/cityofdetroit/cj83q8rph01c02sr3bk20d91e',
     center: [-83.091, 42.350],
-    zoom: 9
+    zoom: 10.5
 })
 
 const ds = yaml.load('datasets.yml')

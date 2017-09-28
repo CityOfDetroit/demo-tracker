@@ -7,7 +7,7 @@
     "watch": "watchify src/main.js -t babelify -o build/bundle.js -v",
     "build": "browserify src/main.js -t babelify | uglifyjs > build/bundle.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

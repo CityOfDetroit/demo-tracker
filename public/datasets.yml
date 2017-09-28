@@ -10,55 +10,55 @@ comm_demo:
   layers:
     - name: Completed
       type: symbol
-      filter: ['in', 'status', 'Demolished']
+      filter: ['==', 'status', 'Demolished']
       layout:
         visibility: visible
-        icon-image: orange_square-11
-        icon-size: 0.5
+        icon-image: green_triangle-11
+        icon-size:
+          stops:
+            - [9, 0.2]
+            - [15, 1]
+            - [18, 1.5]
         icon-allow-overlap: true
       paint:
-        icon-opacity: 1
-
-      # paint:
-      #   circle-color: red
-      #   circle-radius:
-      #     stops:
-      #       - [9, 1]
-      #       - [18, 10]
-      #   circle-opacity:
-      #     stops:
-      #       - [9, 0.2]
-      #       - [17, 0.7]
+        icon-opacity:
+          stops:
+            - [9, 0.5]
+            - [18, 1]
     - name: Contracted
-      type: circle
-      filter: ['in', 'status', 'Demo Contracted']
+      type: symbol
+      filter: ['==', 'status', 'Demo Contracted']
       layout:
         visibility: visible
-      paint:
-        circle-color: blue
-        circle-radius:
-          stops:
-            - [9, 1]
-            - [18, 10]
-        circle-opacity:
+        icon-image: red_triangle-11
+        icon-size:
           stops:
             - [9, 0.2]
-            - [17, 0.7]
+            - [15, 1]
+            - [18, 1.5]
+        icon-allow-overlap: true
+      paint:
+        icon-opacity:
+          stops:
+            - [9, 0.5]
+            - [18, 1]
     - name: Pipeline
-      type: circle
-      filter: ['in', 'status', 'Demo Pipeline']
+      type: symbol
+      filter: ['==', 'status', 'Demo Pipeline']
       layout:
         visibility: visible
-      paint:
-        circle-color: green
-        circle-radius:
-          stops:
-            - [9, 1]
-            - [18, 10]
-        circle-opacity:
+        icon-image: orange_triangle-11
+        icon-size:
           stops:
             - [9, 0.2]
-            - [17, 0.7]
+            - [15, 1]
+            - [19, 3]
+        icon-allow-overlap: true
+      paint:
+        icon-opacity:
+          stops:
+            - [9, 0.5]
+            - [18, 1]
   popup:
     title: Commercial Demolition
     columns:
@@ -68,6 +68,33 @@ comm_demo:
       - field: status
         name: Status
         type: text
+res_demos:
+  slug: res_demos
+  name: Residential Demolitions
+  source:
+    type: socrata
+    url: uzpg-2pfj
+    params:
+      $select: location, address, parcel_id, commercial
+      $limit: 100000
+  layers:
+    - name: Demolitions
+      type: symbol
+      filter: ['in', 'commercial', 'No']
+      layout:
+        visibility: visible
+        icon-image: red_cross-11
+        icon-size:
+          stops:
+            - [9, 0.1]
+            - [15, 0.5]
+            - [19, 2]
+        icon-allow-overlap: true
+      paint:
+        icon-opacity:
+          stops:
+            - [9, 0.5]
+            - [18, 1]
 side_lot_sales:
   slug: side_lot_sales
   name: Side Lot Sales
@@ -86,10 +113,17 @@ side_lot_sales:
         circle-color: green
         circle-radius:
           stops:
-            - [9, 0.25]
-            - [18, 5]
+            - [13, 0]
+            - [13.1, 2]
+            - [19, 7]
+        circle-opacity:
+          stops:
+            - [13, 0]
+            - [13.1, 0.1]
+            - [16, 0.3]
+            - [20, 1]
   popup:
-    title: Side Lot Sale
+    title: DLBA Side Lot Sale
     columns:
     - field: address
       name: Address

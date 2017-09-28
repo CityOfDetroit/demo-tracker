@@ -8,10 +8,6 @@ const Map = {
     })
   },
 
-  // addLayer: function(map, slug, url) {
-  //   console.log(this)
-  // },
-
   makePopup: function(map, feature, template) {
     let html = `
     <h4>${template.title}</h4>
