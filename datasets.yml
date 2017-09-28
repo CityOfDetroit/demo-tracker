@@ -75,7 +75,7 @@ res_demos:
     type: socrata
     url: uzpg-2pfj
     params:
-      $select: location, address, parcel_id, commercial
+      $select: location, address, parcel_id, commercial, demolition_date, price
       $limit: 100000
   layers:
     - name: Demolitions
@@ -101,6 +101,12 @@ res_demos:
       - field: address
         type: text
         name: Address
+      - field: demolition_date
+        type: date
+        name: Knock-Down Date
+      - field: price
+        type: money
+        name: Cost
 side_lot_sales:
   slug: side_lot_sales
   name: Side Lot Sales

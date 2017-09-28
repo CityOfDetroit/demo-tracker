@@ -13,3 +13,8 @@ body {
 .mapbox-popup-content h1,h2,h3,h4,h5 {
   margin: 0;
 }
+
+.mapboxgl-popup-content {
+  max-height: 200px;
+  overflow-y: scroll;
+}
