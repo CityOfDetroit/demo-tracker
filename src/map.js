@@ -8,16 +8,22 @@ const Map = {
     })
   },
 
-  makePopup: function(map, feature, template) {
-    let html = `
-    <h4>${template.title}</h4>
-    ${template.columns.map(c => {
-      return `<i>${c.name}</i>: ${eval(`feature.properties.${c.field}`)}`}).join("<br/>")}
-    `
+  makePopup: function(map, features, yaml) {
+    let items = []
     
+    features.forEach(f => {
+      let template = yaml[f.layer.source].popup
+      let ft_html =`
+      <h4>${template.title}</h4>
+      ${template.columns.map(c => {
+        return `<i>${c.name}</i>: ${eval(`f.properties.${c.field}`)}`}).join("<br/>")}
+      `
+      items.push(ft_html)
+    })
+
     let popup = new mapboxgl.Popup()
-      .setLngLat(feature.geometry.coordinates)
-      .setHTML(html)
+      .setLngLat(features[0].geometry.coordinates)
+      .setHTML(`${items.join("<hr/>")}`)
       .addTo(map);
     return popup
   }

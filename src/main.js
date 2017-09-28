@@ -10,7 +10,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2l0eW9mZGV0cm9pdCIsImEiOiJjaXZvOWhnM3QwMTQzM
 
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/cityofdetroit/cj83q8rph01c02sr3bk20d91e',
+    style: 'mapbox://styles/cityofdetroit/cj83rh7g101382ro354jzgdpx',
     center: [-83.091, 42.350],
     zoom: 10.5
 })
@@ -46,8 +46,10 @@ map.on('load', function() {
                 "source": ds.slug,
                 "layout": l.layout,
                 "paint": l.paint
-            }, 'road-subway')
-            // apply filter
+            },
+            // insert before the roads layer 
+            'road-subway')
+            // apply filter if exists
             if (l.filter) {
                 map.setFilter(l.name, l.filter)
             }
@@ -61,7 +63,7 @@ map.on('load', function() {
         }
         let features = map.queryRenderedFeatures(e.point, { layers: interactiveLayers })
         if (features.length > 0) {
-            Map.makePopup(map, features[0], ds[features[0].layer.source].popup)
+            Map.makePopup(map, features, ds)
         }
     })
 })

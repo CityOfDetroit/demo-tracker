@@ -39499,7 +39499,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2l0eW9mZGV0cm9pdCIsImEiOiJjaXZvOWhnM3QwMTQzM
 
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/cityofdetroit/cj83q8rph01c02sr3bk20d91e',
+    style: 'mapbox://styles/cityofdetroit/cj83rh7g101382ro354jzgdpx',
     center: [-83.091, 42.350],
     zoom: 10.5
 });
@@ -39535,8 +39535,10 @@ map.on('load', function () {
                 "source": ds.slug,
                 "layout": l.layout,
                 "paint": l.paint
-            }, 'road-subway');
-            // apply filter
+            },
+            // insert before the roads layer 
+            'road-subway');
+            // apply filter if exists
             if (l.filter) {
                 map.setFilter(l.name, l.filter);
             }
@@ -39550,7 +39552,7 @@ map.on('load', function () {
         }
         var features = map.queryRenderedFeatures(e.point, { layers: interactiveLayers });
         if (features.length > 0) {
-            _map2.default.makePopup(map, features[0], ds[features[0].layer.source].popup);
+            _map2.default.makePopup(map, features, ds);
         }
     });
 });
@@ -39571,12 +39573,18 @@ var Map = {
     });
   },
 
-  makePopup: function makePopup(map, feature, template) {
-    var html = "\n    <h4>" + template.title + "</h4>\n    " + template.columns.map(function (c) {
-      return "<i>" + c.name + "</i>: " + eval("feature.properties." + c.field);
-    }).join("<br/>") + "\n    ";
+  makePopup: function makePopup(map, features, yaml) {
+    var items = [];
 
-    var popup = new mapboxgl.Popup().setLngLat(feature.geometry.coordinates).setHTML(html).addTo(map);
+    features.forEach(function (f) {
+      var template = yaml[f.layer.source].popup;
+      var ft_html = "\n      <h4>" + template.title + "</h4>\n      " + template.columns.map(function (c) {
+        return "<i>" + c.name + "</i>: " + eval("f.properties." + c.field);
+      }).join("<br/>") + "\n      ";
+      items.push(ft_html);
+    });
+
+    var popup = new mapboxgl.Popup().setLngLat(features[0].geometry.coordinates).setHTML("" + items.join("<hr/>")).addTo(map);
     return popup;
   }
 };
