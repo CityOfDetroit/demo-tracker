@@ -166,7 +166,7 @@ comm_demo:
       filter: ['==', 'status', 'Demo Contracted']
       layout:
         visibility: none
-        icon-image: red_triangle-11
+        icon-image: orange_triangle-11
         icon-size:
           stops:
             - [9, 0.2]
@@ -183,14 +183,14 @@ comm_demo:
         - "height: 0;"
         - "border-left: 8px solid transparent;"
         - "border-right: 8px solid transparent;"
-        - "border-bottom: 13px solid red;"
+        - "border-bottom: 13px solid orange;"
         - "margin-bottom: 1px;"
     - name: Pipeline
       type: symbol
       filter: ['==', 'status', 'Demo Pipeline']
       layout:
         visibility: none
-        icon-image: orange_triangle-11
+        icon-image: red_triangle-11
         icon-size:
           stops:
             - [9, 0.2]
@@ -207,7 +207,7 @@ comm_demo:
         - "height: 0;"
         - "border-left: 8px solid transparent;"
         - "border-right: 8px solid transparent;"
-        - "border-bottom: 13px solid orange;"
+        - "border-bottom: 13px solid red;"
         - "margin-bottom: 1px;"
   popup:
     title: Commercial Demolition
@@ -233,7 +233,7 @@ own_it_now:
     params:
       $select: address, final_sale_price, actual_closing_date, purchaser_type, location
   layers:
-    - name: Own It Now Sales
+    - name: Own It Now (Sold)
       type: circle
       layout:
         visibility: none
@@ -280,7 +280,7 @@ auction_closed:
     params:
       $select: address, final_sale_price, actual_closing_date, purchaser_type, location
   layers:
-    - name: Closed Auctions
+    - name: Closed Auctions (Sold)
       type: circle
       layout:
         visibility: none
@@ -320,7 +320,7 @@ auction_closed:
         name: Buyer Type
 side_lot_sales:
   slug: side_lot_sales
-  name: DLBA Side Lot Sales
+  name: DLBA Side Lots
   source:
     type: socrata
     url: j4fm-e95k
@@ -328,7 +328,7 @@ side_lot_sales:
       $select: location, address, parcel_id, final_sale_price, actual_closing_date
       $limit: 10000
   layers:
-    - name: Sales
+    - name: Side Lots (Sold)
       type: circle
       layout:
         visibility: none
@@ -352,7 +352,7 @@ side_lot_sales:
         - "height: 15px;"
         - "background: blue;"
   popup:
-    title: DLBA Side Lot Sale
+    title: DLBA Side Lot (Sold)
     columns:
     - field: address
       name: Address
