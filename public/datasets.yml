@@ -9,16 +9,26 @@ comm_demo:
       $limit: 10000
   layers:
     - name: Completed
-      type: circle
+      type: symbol
       filter: ['in', 'status', 'Demolished']
       layout:
         visibility: visible
+        icon-image: orange_square-11
+        icon-size: 0.5
+        icon-allow-overlap: true
       paint:
-        circle-color: red
-        circle-radius:
-          stops:
-            - [9, 1]
-            - [18, 10]
+        icon-opacity: 1
+
+      # paint:
+      #   circle-color: red
+      #   circle-radius:
+      #     stops:
+      #       - [9, 1]
+      #       - [18, 10]
+      #   circle-opacity:
+      #     stops:
+      #       - [9, 0.2]
+      #       - [17, 0.7]
     - name: Contracted
       type: circle
       filter: ['in', 'status', 'Demo Contracted']
@@ -30,6 +40,10 @@ comm_demo:
           stops:
             - [9, 1]
             - [18, 10]
+        circle-opacity:
+          stops:
+            - [9, 0.2]
+            - [17, 0.7]
     - name: Pipeline
       type: circle
       filter: ['in', 'status', 'Demo Pipeline']
@@ -41,6 +55,10 @@ comm_demo:
           stops:
             - [9, 1]
             - [18, 10]
+        circle-opacity:
+          stops:
+            - [9, 0.2]
+            - [17, 0.7]
   popup:
     title: Commercial Demolition
     columns:
@@ -70,3 +88,12 @@ side_lot_sales:
           stops:
             - [9, 0.25]
             - [18, 5]
+  popup:
+    title: Side Lot Sale
+    columns:
+    - field: address
+      name: Address
+      type: text
+    - field: parcel_id
+      name: Parcel ID
+      type: text

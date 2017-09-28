@@ -10,7 +10,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2l0eW9mZGV0cm9pdCIsImEiOiJjaXZvOWhnM3QwMTQzM
 
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v8',
+    style: 'mapbox://styles/cityofdetroit/cj83j8qsl01ya2rt93p7a4kxv',
     center: [-83.091, 42.350],
     zoom: 9
 })
@@ -46,7 +46,7 @@ map.on('load', function() {
                 "source": ds.slug,
                 "layout": l.layout,
                 "paint": l.paint
-            })
+            }, 'road-subway')
             // apply filter
             if (l.filter) {
                 map.setFilter(l.name, l.filter)
