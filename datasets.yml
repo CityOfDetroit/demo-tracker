@@ -12,7 +12,7 @@ res_demos:
       type: symbol
       filter: ['in', 'commercial', 'No']
       layout:
-        visibility: visible
+        visibility: none
         icon-image: green_square-11
         icon-size:
           stops:
@@ -43,7 +43,7 @@ res_demos:
         type: money
         name: Cost
 contracted_demos:
-  slug: upcoming_demos
+  slug: contracted_demos
   name: Contracted Demolitions
   source:
     type: socrata
@@ -56,7 +56,7 @@ contracted_demos:
       type: symbol
       filter: ['in', 'commercial_building', 'No']
       layout:
-        visibility: visible
+        visibility: none
         icon-image: orange_square-11
         icon-size:
           stops:
@@ -75,7 +75,7 @@ contracted_demos:
         - "height: 15px;"
         - "background: orange;"
   popup:
-    title: Contracted Demolition
+    title: Contracted Demolitions
     columns:
       - field: address
         type: text
@@ -103,7 +103,7 @@ demo_pipeline:
       type: symbol
       filter: ['in', 'commercial_building', 'No']
       layout:
-        visibility: visible
+        visibility: none
         icon-image: red_square-11
         icon-size:
           stops:
@@ -141,7 +141,7 @@ comm_demo:
       type: symbol
       filter: ['==', 'status', 'Demolished']
       layout:
-        visibility: visible
+        visibility: none
         icon-image: green_triangle-11
         icon-size:
           stops:
@@ -165,7 +165,7 @@ comm_demo:
       type: symbol
       filter: ['==', 'status', 'Demo Contracted']
       layout:
-        visibility: visible
+        visibility: none
         icon-image: red_triangle-11
         icon-size:
           stops:
@@ -189,7 +189,7 @@ comm_demo:
       type: symbol
       filter: ['==', 'status', 'Demo Pipeline']
       layout:
-        visibility: visible
+        visibility: none
         icon-image: orange_triangle-11
         icon-size:
           stops:
@@ -236,7 +236,7 @@ own_it_now:
     - name: Own It Now Sales
       type: circle
       layout:
-        visibility: visible
+        visibility: none
       paint:
         circle-color: purple
         circle-radius:
@@ -283,7 +283,7 @@ auction_closed:
     - name: Closed Auctions
       type: circle
       layout:
-        visibility: visible
+        visibility: none
       paint:
         circle-color: violet
         circle-radius:
@@ -331,7 +331,7 @@ side_lot_sales:
     - name: Sales
       type: circle
       layout:
-        visibility: visible
+        visibility: none
       paint:
         circle-color: blue
         circle-radius:
@@ -376,7 +376,7 @@ for_sale:
     - name: DLBA For Sale
       type: circle
       layout:
-        visibility: visible
+        visibility: none
       paint:
         circle-color: skyblue
         circle-radius:
@@ -411,6 +411,58 @@ for_sale:
     - field: program
       name: Program
       type: text  
+permits:
+  slug: permits
+  name: Building Permits
+  source:
+    type: socrata
+    url: but4-ky7y
+    params:
+      $select: permit_issued, site_location, site_address, estimated_cost, bld_permit_desc, bld_permit_type
+      $where: bld_permit_type in ('New', 'Alterations') and date_trunc_y(permit_issued) > '2014-01-01'
+      $limit: 100000
+  layers:
+    - name: Building Permits
+      type: circle
+      layout:
+        visibility: none
+      paint:
+        circle-color: "#aaa"
+        circle-radius:
+          stops:
+            - [9, 0]
+            - [9.1, 0.75]
+            - [14, 3]
+            - [19, 10]
+        circle-opacity:
+          stops:
+            - [9, 0]
+            - [9.1, 0.25]
+            - [14, 0.55]
+            - [20, 0.75]
+      legend:
+        - "border-radius: 50%;"
+        - "width: 15px;"
+        - "height: 15px;"
+        - "background: #aaa;"
+  popup:
+    title: Building Permit
+    columns:
+    - field: site_address
+      name: Address
+      type: text
+    - field: bld_permit_type
+      name: Permit Type
+      type: text  
+    - field: bld_permit_desc
+      name: Description
+      type: text
+    - field: estimated_cost
+      name: Cost
+      type: money
+    - field: permit_issued
+      name: Date of Issue
+      type: date  
 
     
     

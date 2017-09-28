@@ -44,9 +44,15 @@ label {
 .mapboxgl-popup-content {
   max-height: 200px;
   overflow-y: scroll;
+  max-width: 300px;
 }
 
 .legend-icon {
   display: inline-block;
   margin-right: .2em;
+}
+
+#locate {
+  width: 100%;
+  margin: 1em 0em;
 }
