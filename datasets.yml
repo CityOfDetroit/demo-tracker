@@ -26,6 +26,10 @@ res_demos:
             - [9, 0.2]
             - [15, 0.5]
             - [19, 1]
+      legend:
+        - "width: 15px;"
+        - "height: 15px;"
+        - "background: green;"
   popup:
     title: Residential Demolition
     columns:
@@ -66,6 +70,10 @@ contracted_demos:
             - [9, 0.4]
             - [15, 0.75]
             - [19, 1]
+      legend:
+        - "width: 15px;"
+        - "height: 15px;"
+        - "background: orange;"
   popup:
     title: Contracted Demolition
     columns:
@@ -109,6 +117,10 @@ demo_pipeline:
             - [9, 0.4]
             - [15, 0.75]
             - [19, 1]
+      legend:
+        - "width: 15px;"
+        - "height: 15px;"
+        - "background: red;"
   popup:
     title: Demo Pipeline
     columns:
@@ -142,6 +154,13 @@ comm_demo:
           stops:
             - [9, 0.5]
             - [18, 1]
+      legend:
+        - "width: 0;"
+        - "height: 0;"
+        - "border-left: 8px solid transparent;"
+        - "border-right: 8px solid transparent;"
+        - "border-bottom: 13px solid green;"
+        - "margin-bottom: 1px;"
     - name: Contracted
       type: symbol
       filter: ['==', 'status', 'Demo Contracted']
@@ -159,6 +178,13 @@ comm_demo:
           stops:
             - [9, 0.5]
             - [18, 1]
+      legend:
+        - "width: 0;"
+        - "height: 0;"
+        - "border-left: 8px solid transparent;"
+        - "border-right: 8px solid transparent;"
+        - "border-bottom: 13px solid red;"
+        - "margin-bottom: 1px;"
     - name: Pipeline
       type: symbol
       filter: ['==', 'status', 'Demo Pipeline']
@@ -176,6 +202,13 @@ comm_demo:
           stops:
             - [9, 0.5]
             - [18, 1]
+      legend:
+        - "width: 0;"
+        - "height: 0;"
+        - "border-left: 8px solid transparent;"
+        - "border-right: 8px solid transparent;"
+        - "border-bottom: 13px solid orange;"
+        - "margin-bottom: 1px;"
   popup:
     title: Commercial Demolition
     columns:
@@ -218,6 +251,11 @@ own_it_now:
             - [9.1, 0.5]
             - [14, 0.75]
             - [20, 0.95]
+      legend:
+        - "border-radius: 50%;"
+        - "width: 15px;"
+        - "height: 15px;"
+        - "background: purple;"
   popup:
     title: Own It Now
     columns:
@@ -260,6 +298,11 @@ auction_closed:
             - [9.1, 0.5]
             - [14, 0.75]
             - [20, 0.95]
+      legend:
+        - "border-radius: 50%;"
+        - "width: 15px;"
+        - "height: 15px;"
+        - "background: violet;"
   popup:
     title: Closed Auctions
     columns:
@@ -282,7 +325,7 @@ side_lot_sales:
     type: socrata
     url: j4fm-e95k
     params:
-      $select: location, address, parcel_id, final_sale_price
+      $select: location, address, parcel_id, final_sale_price, actual_closing_date
       $limit: 10000
   layers:
     - name: Sales
@@ -303,6 +346,11 @@ side_lot_sales:
             - [9.1, 0.1]
             - [14, 0.25]
             - [20, 0.75]
+      legend:
+        - "border-radius: 50%;"
+        - "width: 15px;"
+        - "height: 15px;"
+        - "background: blue;"
   popup:
     title: DLBA Side Lot Sale
     columns:
@@ -311,7 +359,10 @@ side_lot_sales:
       type: text
     - field: parcel_id
       name: Parcel ID
-      type: text  
+      type: text
+    - field: actual_closing_date
+      name: Closing Date
+      type: date
 for_sale:
   slug: for_sale
   name: DLBA For Sale
@@ -340,6 +391,11 @@ for_sale:
             - [9.1, 0.75]
             - [14, 0.85]
             - [20, 1]
+      legend:
+        - "border-radius: 50%;"
+        - "width: 15px;"
+        - "height: 15px;"
+        - "background: skyblue;"
   popup:
     title: DLBA For Sale
     columns:

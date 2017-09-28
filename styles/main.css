@@ -45,3 +45,8 @@ label {
   max-height: 200px;
   overflow-y: scroll;
 }
+
+.legend-icon {
+  display: inline-block;
+  margin-right: .2em;
+}
