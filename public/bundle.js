@@ -43957,6 +43957,8 @@ exports.default = Helpers;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var _ = require('lodash');
+
 var Legend = {
   addCategory: function addCategory(legendDiv, layer) {
     var div = document.createElement("div");
@@ -43969,7 +43971,11 @@ var Legend = {
   addLayer: function addLayer(categoryUl, layer) {
     var div = document.createElement("div");
     div.classList = ['layer-item'];
-    div.innerHTML = "\n          <input type=\"checkbox\" id=\"" + layer.layer_name + "\" checked=\"true\" value=\"" + layer.layer_name + "\">\n          <label for=\"" + layer.layer_name + "\">" + layer.name + "</label>";
+    if (layer.legend) {
+      var style = layer.legend.join("");
+      console.log(style);
+    }
+    div.innerHTML = "\n          <div id=\"" + layer.layer_name + "_icon\" class=\"legend-icon\" style=\"" + (layer.legend ? layer.legend.join("") : '') + "\"> </div>\n          <input type=\"checkbox\" id=\"" + layer.layer_name + "\" checked=\"true\" value=\"" + layer.layer_name + "\">\n          <label for=\"" + layer.layer_name + "\">" + layer.name + "</label>";
     categoryUl.appendChild(div);
     return div;
   }
@@ -43977,7 +43983,7 @@ var Legend = {
 
 exports.default = Legend;
 
-},{}],17:[function(require,module,exports){
+},{"lodash":1}],17:[function(require,module,exports){
 'use strict';
 
 var _helpers = require('./helpers.js');
