@@ -39499,7 +39499,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2l0eW9mZGV0cm9pdCIsImEiOiJjaXZvOWhnM3QwMTQzM
 
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/cityofdetroit/cj83rh7g101382ro354jzgdpx',
+    style: 'mapbox://styles/cityofdetroit/cj83ullty05dr2qpbl0aml9wl',
     center: [-83.091, 42.350],
     zoom: 10.5
 });
