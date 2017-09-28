@@ -4,11 +4,11 @@
   "description": "A template for future projects.",
   "main": "index.js",
   "scripts": {
-    "watch": "watchify src/main.js -t babelify -o build/bundle.js -v",
+    "watch": "watchify src/main.js -t babelify -o public/bundle.js -v",
     "build": "browserify src/main.js -t babelify | uglifyjs > public/bundle.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d public",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers js:babel-core/register"
   },
   "repository": {
     "type": "git",
