@@ -1,4 +1,5 @@
 var mapboxgl = require('mapbox-gl')
+import Helpers from './helpers.js'
 
 const Map = {
   addGeoJsonSource: function(map, slug, url) {
@@ -16,7 +17,7 @@ const Map = {
       let ft_html =`
       <h4>${template.title}</h4>
       ${template.columns.map(c => {
-        return `<i>${c.name}</i>: ${eval(`f.properties.${c.field}`)}`}).join("<br/>")}
+        return `<i>${c.name}</i>: ${Helpers.formatPopupValue(eval(`f.properties.${c.field}`), c.type)} `}).join("<br/>")}
       `
       items.push(ft_html)
     })
