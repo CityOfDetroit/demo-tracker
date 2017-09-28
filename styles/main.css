@@ -1,6 +1,6 @@
 body { 
   margin: 0; 
-  padding: 0; 
+  padding: 0;
 }
 
 #map { 
@@ -10,8 +10,35 @@ body {
   width:  100%; 
 }
 
-.mapbox-popup-content h1,h2,h3,h4,h5 {
+#legend {
+  z-index: 3;
+  position: absolute;
+  right: 1em;
+  bottom: 2em;
+  background: rgba(255,255,255,0.8);
+  border: 1px dotted black;
+  border-radius: 9px;
+  padding: 1em;
+}
+
+.legend-title {
+  margin-bottom: .5em;
+}
+
+input[type=checkbox] {
+  transform: scale(1.25);
+}
+
+label {
+  font-size: .9em;
+}
+
+.mapboxgl-popup-content > h1,h2,h3,h4,h5,h6 {
   margin: 0;
+}
+
+.layer-item {
+  margin: .2em 0em;
 }
 
 .mapboxgl-popup-content {
