@@ -97,7 +97,7 @@ demo_pipeline:
     url: urqn-dpd3
     params:
       $select: address, commercial_building, location
-      $limit: 1000
+      $limit: 5000
   layers:
     - name: Demo Pipeline
       type: symbol
