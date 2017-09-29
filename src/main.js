@@ -57,7 +57,7 @@ map.on('load', function() {
             interactiveLayers.push(l.layer_name)
             let catUl = document.querySelector(`#category-${ds.category}`)
             console.log(catUl || 'couldnt find!')
-            Legend.addLayer(catUl, l)                        
+            Legend.addLayer(catUl, l, ds.source.url)                        
             map.addLayer({
                 "id": l.layer_name,
                 "type": l.type,

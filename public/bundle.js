@@ -43969,19 +43969,19 @@ var Legend = {
     var div = document.createElement("div");
     div.id = '' + layer.slug;
     div.classList = ['dataset-item'];
-    div.innerHTML = '<h5>' + layer.name + ' <a href="https://data.detroitmi.gov/d/' + layer.source.url + '">(source)</a></h5><div class=\'legend-layer-list\'></div>';
+    div.innerHTML = '<h5>' + layer.name + '</h5><div class=\'legend-layer-list\'></div>';
     legendDiv.appendChild(div);
     return div;
   },
 
-  addLayer: function addLayer(categoryUl, layer) {
+  addLayer: function addLayer(categoryUl, layer, url) {
     var div = document.createElement("div");
     div.classList = ['layer-item'];
     if (layer.legend) {
       var style = layer.legend.join("");
       console.log(style);
     }
-    div.innerHTML = '\n          <div id="' + layer.layer_name + '_icon" class="legend-icon" style="' + (layer.legend ? layer.legend.join("") : '') + '"> </div>\n          <input type="checkbox" class="layer-toggle" id="' + layer.layer_name + '" value="' + layer.layer_name + '">\n          <label for="' + layer.layer_name + '">' + layer.name + '</label>';
+    div.innerHTML = '\n          <div id="' + layer.layer_name + '_icon" class="legend-icon" style="' + (layer.legend ? layer.legend.join("") : '') + '"> </div>\n          <input type="checkbox" class="layer-toggle" id="' + layer.layer_name + '" value="' + layer.layer_name + '">\n          <label for="' + layer.layer_name + '">' + layer.name + ' <a href="https://data.detroitmi.gov/d/' + url + '">(source)</a></label>';
     categoryUl.appendChild(div);
     return div;
   }
@@ -44104,7 +44104,7 @@ map.on('load', function () {
             interactiveLayers.push(l.layer_name);
             var catUl = document.querySelector('#category-' + ds.category);
             console.log(catUl || 'couldnt find!');
-            _legend2.default.addLayer(catUl, l);
+            _legend2.default.addLayer(catUl, l, ds.source.url);
             map.addLayer({
                 "id": l.layer_name,
                 "type": l.type,
