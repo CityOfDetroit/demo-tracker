@@ -1,6 +1,6 @@
-# iet-template
+# demo-tracker
 
-Project skeleton
+A map showing demolition and land bank activity in the city of Detroit.
 
 ## Development
 
@@ -17,12 +17,12 @@ If you don't, install them:
 npm install -g browserify watchify uglify-js
 ```
 
-### Install
+### Develop
 
 Clone this project:
 ```
-git clone https://github.com/CityOfDetroit/iet-template.git
-cd iet-template
+git clone https://github.com/CityOfDetroit/demo-tracker.git
+cd demo-tracker
 npm install
 ```
 
@@ -34,4 +34,4 @@ This is listening for changes in `src/main.js` and will automatically rebuild, s
 
 ### Deploy
 
-Run `npm run deploy`. This pipes `src/main.js` through Uglify to minify it, writes to `build/bundle.js`, and then publishes to gh-pages (kinda, still figuring this piece out).
+Run `npm run deploy`. This pipes `src/main.js` through Uglify to minify it, writes to `public/bundle.js`, and then publishes to gh-pages.
