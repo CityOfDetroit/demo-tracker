@@ -17,6 +17,19 @@ var map = new mapboxgl.Map({
     zoom: 10.5
 })
 
+
+// geolocation control
+map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true
+    },
+    trackUserLocation: true
+}), 'top-left');
+
+// nav control
+map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+
+// load datasets.yml
 const ds = yaml.load('datasets.yml')
 
 map.on('load', function() {
@@ -96,6 +109,7 @@ map.on('load', function() {
         }
     })
 
+    // listen for legend toggle
     let toggle = document.querySelector("#legend-toggle")
     toggle.style.borderTop = "8px solid black"
     toggle.addEventListener("click", e => {
