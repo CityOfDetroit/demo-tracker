@@ -1,6 +1,7 @@
 res_demos:
   slug: res_demos
   name: Residential Demolitions
+  category: residential
   source:
     type: socrata
     url: uzpg-2pfj
@@ -8,7 +9,7 @@ res_demos:
       $select: location, address, parcel_id, commercial, demolition_date, price
       $limit: 100000
   layers:
-    - name: Demolitions
+    - name: Completed
       type: symbol
       filter: ['in', 'commercial', 'No']
       layout:
@@ -45,6 +46,7 @@ res_demos:
 contracted_demos:
   slug: contracted_demos
   name: Contracted Demolitions
+  category: residential
   source:
     type: socrata
     url: nfx3-ihbp
@@ -52,7 +54,7 @@ contracted_demos:
       $select: address, contractor_name, price, demolish_by_date, commercial_building, location
       $limit: 1000
   layers:
-    - name: Contracted Demolitions
+    - name: Contracted
       type: symbol
       filter: ['in', 'commercial_building', 'No']
       layout:
@@ -92,6 +94,7 @@ contracted_demos:
 demo_pipeline:
   slug: demo_pipeline
   name: Demolition Pipeline
+  category: residential
   source:
     type: socrata
     url: urqn-dpd3
@@ -99,7 +102,7 @@ demo_pipeline:
       $select: address, commercial_building, location
       $limit: 5000
   layers:
-    - name: Demo Pipeline
+    - name: Pipeline
       type: symbol
       filter: ['in', 'commercial_building', 'No']
       layout:
@@ -130,6 +133,7 @@ demo_pipeline:
 comm_demo:
   slug: comm_demo
   name: Commercial Demolitions
+  category: commercial
   source: 
     type: socrata
     url: niaj-6fdd
@@ -227,13 +231,14 @@ comm_demo:
 own_it_now:
   slug: own_it_now
   name: DLBA Own It Now
+  category: dlba
   source:
     type: socrata
     url: xpyj-nvij
     params:
       $select: address, final_sale_price, actual_closing_date, purchaser_type, location
   layers:
-    - name: Own It Now (Sold)
+    - name: Own It Now
       type: circle
       layout:
         visibility: none
@@ -257,7 +262,7 @@ own_it_now:
         - "height: 15px;"
         - "background: purple;"
   popup:
-    title: Own It Now
+    title: Own It Now Sale
     columns:
       - field: address
         type: text
@@ -274,13 +279,14 @@ own_it_now:
 auction_closed:
   slug: auction_closed
   name: DLBA Closed Auctions
+  category: dlba
   source:
     type: socrata
     url: 3y4n-hi9e
     params:
       $select: address, final_sale_price, actual_closing_date, purchaser_type, location
   layers:
-    - name: Closed Auctions (Sold)
+    - name: Closed Auctions
       type: circle
       layout:
         visibility: none
@@ -304,7 +310,7 @@ auction_closed:
         - "height: 15px;"
         - "background: violet;"
   popup:
-    title: Closed Auctions
+    title: Auction Sale
     columns:
       - field: address
         type: text
@@ -321,6 +327,7 @@ auction_closed:
 side_lot_sales:
   slug: side_lot_sales
   name: DLBA Side Lots
+  category: dlba
   source:
     type: socrata
     url: j4fm-e95k
@@ -328,7 +335,7 @@ side_lot_sales:
       $select: location, address, parcel_id, final_sale_price, actual_closing_date
       $limit: 10000
   layers:
-    - name: Side Lots (Sold)
+    - name: Side Lots
       type: circle
       layout:
         visibility: none
@@ -352,7 +359,7 @@ side_lot_sales:
         - "height: 15px;"
         - "background: blue;"
   popup:
-    title: DLBA Side Lot (Sold)
+    title: Side Lot Sale
     columns:
     - field: address
       name: Address
@@ -365,7 +372,8 @@ side_lot_sales:
       type: date
 for_sale:
   slug: for_sale
-  name: DLBA For Sale
+  name: Currently For Sale
+  category: dlba
   source:
     type: socrata
     url: dw4j-vebq
@@ -373,7 +381,7 @@ for_sale:
       $select: location, address, parcel_id, listing_date, program
       $limit: 10000
   layers:
-    - name: DLBA For Sale
+    - name: Currently for sale
       type: circle
       layout:
         visibility: none
@@ -414,6 +422,7 @@ for_sale:
 permits:
   slug: permits
   name: Building Permits
+  category: permits
   source:
     type: socrata
     url: but4-ky7y

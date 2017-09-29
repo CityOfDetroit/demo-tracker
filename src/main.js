@@ -25,7 +25,6 @@ map.on('load', function() {
 
     // loop through datasets
     _.each(ds, (ds => {
-        let catUl = Legend.addCategory(document.querySelector("#legend"), ds)
         // get URL based on the source.type
         switch (ds.source.type) {
             case "socrata":
@@ -43,6 +42,8 @@ map.on('load', function() {
             // replace the name & push to interactiveLayers
             l.layer_name = `${ds.slug}_${Helpers.makeSlug(l.name)}`;
             interactiveLayers.push(l.layer_name)
+            let catUl = document.querySelector(`#category-${ds.category}`)
+            console.log(catUl || 'couldnt find!')
             Legend.addLayer(catUl, l)                        
             map.addLayer({
                 "id": l.layer_name,
@@ -93,6 +94,22 @@ map.on('load', function() {
                 map.flyTo({center: [coords.x, coords.y], zoom: 15})
             })
         }
+    })
+
+    let toggle = document.querySelector("#legend-toggle")
+    toggle.style.borderTop = "8px solid black"
+    toggle.addEventListener("click", e => {
+        let toggleable = document.querySelector("#legend-toggleable")
+        if (toggleable.style.display == 'none') {
+            e.target.style.borderTop = "8px solid black"
+            e.target.style.borderBottom = ""
+            toggleable.style.display = 'block'
+        } else {
+            e.target.style.borderBottom = "8px solid black"
+            e.target.style.borderTop = ""
+            toggleable.style.display = 'none'       
+        }
+
     })
 
     // add popup listener on interactiveLayers
