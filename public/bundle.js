@@ -43943,7 +43943,7 @@ var Helpers = {
         if (value != 'null') {
           return moment(value).format('ll');
         } else {
-          return '-';
+          return 'n/a';
         }
         break;
       case "money":
@@ -43965,14 +43965,6 @@ Object.defineProperty(exports, "__esModule", {
 var _ = require('lodash');
 
 var Legend = {
-  addCategory: function addCategory(legendDiv, layer) {
-    var div = document.createElement("div");
-    div.id = '' + layer.slug;
-    div.classList = ['dataset-item'];
-    div.innerHTML = '<h5>' + layer.name + '</h5><div class=\'legend-layer-list\'></div>';
-    legendDiv.appendChild(div);
-    return div;
-  },
 
   addLayer: function addLayer(categoryUl, layer, url) {
     var div = document.createElement("div");
@@ -44121,7 +44113,7 @@ map.on('load', function () {
         });
     });
 
-    // mouseover/mouseout
+    // mouseover/mouseout crosshair
     interactiveLayers.forEach(function (il) {
         map.on('mouseenter', il, function (e) {
             map.getCanvas().style.cursor = 'crosshair';
@@ -44131,7 +44123,7 @@ map.on('load', function () {
         });
     });
 
-    // add event listeners
+    // listen for toggle on individual layers
     var inputs = document.querySelectorAll(".layer-toggle");
     inputs.forEach(function (i) {
         i.addEventListener("change", function (c) {
@@ -44144,6 +44136,7 @@ map.on('load', function () {
         });
     });
 
+    // listen for Enter keypress on address/intersection search bar
     var search = document.querySelector("#locate");
     search.addEventListener("keypress", function (e) {
         if (e.key == 'Enter') {
@@ -44171,7 +44164,7 @@ map.on('load', function () {
         }
     });
 
-    // add popup listener on interactiveLayers
+    // listen to mapClick on interactiveLayers, and make popup
     var popup = null;
     map.on('click', function (e) {
         if (popup) {

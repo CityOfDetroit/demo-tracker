@@ -19,7 +19,7 @@ const Helpers = {
         if (value != 'null') {
           return moment(value).format('ll')          
         }
-        else { return '-' }
+        else { return 'n/a' }
         break;
       case "money":
         return '$' + parseInt(value).toFixed(2)

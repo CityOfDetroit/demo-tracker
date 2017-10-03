@@ -39,7 +39,7 @@ res_demos:
         name: Address
       - field: demolition_date
         type: date
-        name: Knock-Down Date
+        name: Demolition Date
       - field: price
         type: money
         name: Cost
@@ -84,7 +84,7 @@ contracted_demos:
         name: Address
       - field: demolish_by_date
         type: date
-        name: Projected Date
+        name: Projected Demolition Date
       - field: contractor_name
         type: text
         name: Contractor
@@ -151,7 +151,7 @@ comm_demo:
           stops:
             - [9, 0.2]
             - [15, 1]
-            - [18, 1.5]
+            - [19, 4]
         icon-allow-overlap: true
       paint:
         icon-opacity:
@@ -175,7 +175,7 @@ comm_demo:
           stops:
             - [9, 0.2]
             - [15, 1]
-            - [18, 1.5]
+            - [19, 4]
         icon-allow-overlap: true
       paint:
         icon-opacity:
@@ -199,7 +199,7 @@ comm_demo:
           stops:
             - [9, 0.2]
             - [15, 1]
-            - [19, 3]
+            - [19, 4]
         icon-allow-overlap: true
       paint:
         icon-opacity:
@@ -223,7 +223,7 @@ comm_demo:
         name: Status
         type: text
       - field: demo_date
-        name: Demolished
+        name: Demolition Date
         type: date
       - field: total_cost
         name: Cost
@@ -249,7 +249,8 @@ own_it_now:
             - [9, 0]
             - [9.1, .5]
             - [14, 3]
-            - [19, 10]
+            - [16, 6]
+            - [19, 15]
         circle-opacity:
           stops:
             - [9, 0]
@@ -297,7 +298,8 @@ auction_closed:
             - [9, 0]
             - [9.1, .5]
             - [14, 3]
-            - [19, 10]
+            - [16, 6]
+            - [19, 15]
         circle-opacity:
           stops:
             - [9, 0]
@@ -346,7 +348,8 @@ side_lot_sales:
             - [9, 0]
             - [9.1, .5]
             - [14, 3]
-            - [19, 10]
+            - [16, 6]
+            - [19, 15]
         circle-opacity:
           stops:
             - [9, 0]
@@ -390,9 +393,10 @@ for_sale:
         circle-radius:
           stops:
             - [9, 0]
-            - [9.1, 1]
-            - [14, 4]
-            - [19, 12]
+            - [9.1, .5]
+            - [14, 3]
+            - [16, 6]
+            - [19, 15]
         circle-opacity:
           stops:
             - [9, 0]
@@ -440,8 +444,9 @@ permits:
         circle-radius:
           stops:
             - [9, 0]
-            - [9.1, 0.75]
+            - [9.1, .5]
             - [14, 3]
+            - [16, 6]
             - [19, 10]
         circle-opacity:
           stops:

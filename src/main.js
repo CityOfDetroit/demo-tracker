@@ -74,7 +74,7 @@ map.on('load', function() {
         }))
     }))
 
-    // mouseover/mouseout
+    // mouseover/mouseout crosshair
     interactiveLayers.forEach(il => {
         map.on('mouseenter', il, function (e) {
             map.getCanvas().style.cursor = 'crosshair'
@@ -84,7 +84,7 @@ map.on('load', function() {
         });
     })
 
-    // add event listeners
+    // listen for toggle on individual layers
     let inputs = document.querySelectorAll(".layer-toggle")
     inputs.forEach(i => {
         i.addEventListener("change", c => {
@@ -98,6 +98,7 @@ map.on('load', function() {
         })
     })
 
+    // listen for Enter keypress on address/intersection search bar
     let search = document.querySelector("#locate")
     search.addEventListener("keypress", e => {
         if(e.key == 'Enter') {
@@ -126,7 +127,7 @@ map.on('load', function() {
 
     })
 
-    // add popup listener on interactiveLayers
+    // listen to mapClick on interactiveLayers, and make popup
     let popup = null
     map.on('click', e => {
         if (popup) {
