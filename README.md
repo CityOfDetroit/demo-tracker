@@ -2,6 +2,8 @@
 
 A map showing demolition and land bank activity in the city of Detroit.
 
+Live demo: https://cityofdetroit.github.io/demo-tracker
+
 ## Development
 
 Behind the scenes, we use Babel to compile, Browserify and Watchify to bundle, and Uglify to minify our code.
