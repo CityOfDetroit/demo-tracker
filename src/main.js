@@ -8,7 +8,7 @@ import Map from './map.js'
 import Legend from './legend.js'
 import Locate from './locate.js'
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiY2l0eW9mZGV0cm9pdCIsImEiOiJjaXZvOWhnM3QwMTQzMnRtdWhyYnk5dTFyIn0.FZMFi0-hvA60KYnI-KivWg';
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2l0eW9mZGV0cm9pdCIsImEiOiJjajhmenkzejYwNm56MnFvNmF1anhmaXN6In0.hOESlZup6yOhJB8bH9kiWA';
 
 var map = new mapboxgl.Map({
     container: 'map',
