@@ -93,7 +93,7 @@ contracted_demos:
         name: Contractor
       - field: price
         type: money
-        name: Cost
+        name: Demo Contractor Price
 demo_pipeline:
   slug: demo_pipeline
   name: Demolition Pipeline
