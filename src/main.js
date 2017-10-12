@@ -34,6 +34,7 @@ const ds = yaml.load('datasets.yml')
 
 map.on('load', function() {
 
+    Map.addHighlightLayer(map)
     let interactiveLayers = []
 
     // loop through datasets
@@ -103,7 +104,8 @@ map.on('load', function() {
         if(e.key == 'Enter') {
             Locate.geocodeAddress(e.target.value).then(result => {
                 let coords = result['candidates'][0]['location']
-                map.flyTo({center: [coords.x, coords.y], zoom: 15})
+                map.flyTo({center: [coords.x, coords.y], zoom: 17})
+                Map.setHighlightLayer(map, coords)         
             })
         }
     })

@@ -9,6 +9,50 @@ const Map = {
     })
   },
 
+  addHighlightLayer: function(map) {
+    map.addSource('highlight', {
+      type: 'geojson',
+      data: {
+          "type": "FeatureCollection",
+          "features": [{
+              "type": "Feature",
+              "geometry": {
+                  "type": "Point",
+                  "coordinates": [0,0]
+              }
+          }]
+      }
+   });
+
+    map.addLayer({
+      "id": "highlighter",
+      "type": "circle",
+      "source": "highlight",
+      "layout": {
+          "visibility": "visible"
+      },
+      "paint": {
+        "circle-radius": 2.5,
+        "circle-color": "rgba(255,0,0,1)",
+        "circle-stroke-width": 5,
+        "circle-stroke-color": "rgba(255,0,0,0.3)"
+      }
+    }, 'road-subway');
+  },
+
+  setHighlightLayer: function(map, coords) {
+    map.getSource('highlight').setData({
+          "type": "FeatureCollection",
+          "features": [{
+              "type": "Feature",
+              "geometry": {
+                  "type": "Point",
+                  "coordinates": [coords.x, coords.y]
+              }
+          }]
+      })
+  },
+
   makePopup: function(map, features, yaml) {
     let items = []
     

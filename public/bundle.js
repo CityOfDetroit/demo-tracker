@@ -44124,6 +44124,7 @@ var ds = yaml.load('datasets.yml');
 
 map.on('load', function () {
 
+    _map2.default.addHighlightLayer(map);
     var interactiveLayers = [];
 
     // loop through datasets
@@ -44192,7 +44193,8 @@ map.on('load', function () {
         if (e.key == 'Enter') {
             _locate2.default.geocodeAddress(e.target.value).then(function (result) {
                 var coords = result['candidates'][0]['location'];
-                map.flyTo({ center: [coords.x, coords.y], zoom: 15 });
+                map.flyTo({ center: [coords.x, coords.y], zoom: 17 });
+                _map2.default.setHighlightLayer(map, coords);
             });
         }
     });
@@ -44247,6 +44249,50 @@ var Map = {
     map.addSource(slug, {
       "type": "geojson",
       "data": url
+    });
+  },
+
+  addHighlightLayer: function addHighlightLayer(map) {
+    map.addSource('highlight', {
+      type: 'geojson',
+      data: {
+        "type": "FeatureCollection",
+        "features": [{
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [0, 0]
+          }
+        }]
+      }
+    });
+
+    map.addLayer({
+      "id": "highlighter",
+      "type": "circle",
+      "source": "highlight",
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "circle-radius": 2.5,
+        "circle-color": "rgba(255,0,0,1)",
+        "circle-stroke-width": 5,
+        "circle-stroke-color": "rgba(255,0,0,0.3)"
+      }
+    }, 'road-subway');
+  },
+
+  setHighlightLayer: function setHighlightLayer(map, coords) {
+    map.getSource('highlight').setData({
+      "type": "FeatureCollection",
+      "features": [{
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [coords.x, coords.y]
+        }
+      }]
     });
   },
 
