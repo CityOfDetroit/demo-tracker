@@ -40,6 +40,22 @@ body {
   display: inline-block;
 }
 
+@media (max-width: 500px) {
+  #legend-map-title {
+    font-size: 0.9em;
+    margin-bottom: .25em;
+    margin-top: .25em;
+  }
+
+  .layer-item {
+    font-size: .75em;
+  }
+
+  h5 {
+    font-size: .9em;
+  }
+}
+
 input[type=checkbox] {
   transform: scale(1.25);
 }
