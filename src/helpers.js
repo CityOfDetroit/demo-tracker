@@ -12,10 +12,10 @@ const Helpers = {
   formatPopupValue: function(value, type) {
     switch(type) {
       case "text":
-        return value
+        let returnVal = value ?  value : '-'
+        return returnVal
         break;
       case "date":
-        console.log(value)
         if (value != 'null') {
           return moment(value).format('ll')          
         }

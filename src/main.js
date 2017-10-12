@@ -12,7 +12,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2l0eW9mZGV0cm9pdCIsImEiOiJjajhmenkzejYwNm56M
 
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/cityofdetroit/cj83zovzu08i92snucwtcd2yh',
+    style: 'mapbox://styles/cityofdetroit/cj8nmxq507v1a2ss2panbuxya',
     center: [-83.091, 42.350],
     zoom: 10.5
 })
@@ -56,7 +56,6 @@ map.on('load', function() {
             l.layer_name = `${ds.slug}_${Helpers.makeSlug(l.name)}`;
             interactiveLayers.push(l.layer_name)
             let catUl = document.querySelector(`#category-${ds.category}`)
-            console.log(catUl || 'couldnt find!')
             Legend.addLayer(catUl, l, ds.source.url)                        
             map.addLayer({
                 "id": l.layer_name,
@@ -103,7 +102,6 @@ map.on('load', function() {
     search.addEventListener("keypress", e => {
         if(e.key == 'Enter') {
             Locate.geocodeAddress(e.target.value).then(result => {
-                console.log(result)
                 let coords = result['candidates'][0]['location']
                 map.flyTo({center: [coords.x, coords.y], zoom: 15})
             })
