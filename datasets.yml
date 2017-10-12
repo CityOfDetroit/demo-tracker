@@ -6,7 +6,7 @@ res_demos:
     type: socrata
     url: uzpg-2pfj
     params:
-      $select: location, address, parcel_id, commercial, demolition_date, price
+      $select: location, address, parcel_id, commercial, demolition_date, price, contractor_name
       $limit: 100000
   layers:
     - name: Completed
@@ -43,6 +43,9 @@ res_demos:
       - field: price
         type: money
         name: Cost
+      - field: contractor_name
+        type: text
+        name: Contractor
 contracted_demos:
   slug: contracted_demos
   name: Contracted Demolitions
@@ -228,6 +231,9 @@ comm_demo:
       - field: total_cost
         name: Cost
         type: money
+      - field: contractor_name
+        type: text
+        name: Contractor
 own_it_now:
   slug: own_it_now
   name: DLBA Own It Now
