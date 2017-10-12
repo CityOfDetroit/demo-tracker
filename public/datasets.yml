@@ -42,7 +42,7 @@ res_demos:
         name: Demolition Date
       - field: price
         type: money
-        name: Cost
+        name: Demo Contractor's Price
       - field: contractor_name
         type: text
         name: Contractor
@@ -229,7 +229,7 @@ comm_demo:
         name: Demolition Date
         type: date
       - field: total_cost
-        name: Cost
+        name: Demo Contractor's Price
         type: money
       - field: contractor_name
         type: text
