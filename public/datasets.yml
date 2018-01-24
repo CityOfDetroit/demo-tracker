@@ -237,7 +237,7 @@ comm_demo:
 own_it_now:
   slug: own_it_now
   name: DLBA Own It Now
-  category: dlba
+  category: dlba-sold
   source:
     type: socrata
     url: xpyj-nvij
@@ -286,7 +286,7 @@ own_it_now:
 auction_closed:
   slug: auction_closed
   name: DLBA Closed Auctions
-  category: dlba
+  category: dlba-sold
   source:
     type: socrata
     url: 3y4n-hi9e
@@ -335,7 +335,7 @@ auction_closed:
 side_lot_sales:
   slug: side_lot_sales
   name: DLBA Side Lots
-  category: dlba
+  category: dlba-sold
   source:
     type: socrata
     url: j4fm-e95k
@@ -382,7 +382,7 @@ side_lot_sales:
 for_sale:
   slug: for_sale
   name: Currently For Sale
-  category: dlba
+  category: dlba-sold
   source:
     type: socrata
     url: dw4j-vebq
@@ -428,6 +428,54 @@ for_sale:
       type: date  
     - field: program
       name: Program
+      type: text
+owned_structure:
+  slug: owned_structure
+  name: Currently For Sale
+  category: dlba-sold
+  source:
+    type: socrata
+    url: mhw8-ppmt
+    params:
+      $select: location, name, parcel_id, inventory_status_socrata
+      $where: inventory_status_socrata in ('DLBA Owned Structure')
+      $limit: 10000
+  layers:
+    - name: DLBA Owned Structure
+      type: circle
+      layout:
+        visibility: none
+      paint:
+        circle-color: "#333"
+        circle-radius:
+          stops:
+            - [9, 0]
+            - [9.1, .5]
+            - [14, 3]
+            - [16, 6]
+            - [19, 15]
+        circle-opacity:
+          stops:
+            - [9, 0]
+            - [9.1, 0.75]
+            - [14, 0.85]
+            - [20, 1]
+      legend:
+        - "border-radius: 50%;"
+        - "width: 15px;"
+        - "height: 15px;"
+        - "background: #333;"
+  popup:
+    title: DLBA Owned Structure
+    columns:
+    - field: name
+      name: Address
+      type: text
+    - field: parcel_id
+      name: Parcel ID
+      type: text  
+    - field: inventory_status_socrata
+      name: Status
       type: text  
 permits:
   slug: permits

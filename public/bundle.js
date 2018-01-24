@@ -44052,7 +44052,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2l0eW9mZGV0cm9pdCIsImEiOiJjajhmenkzejYwNm56M
 
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/cityofdetroit/cj8nmxq507v1a2ss2panbuxya',
+    style: 'mapbox://styles/cityofdetroit/cjctinhmf03my2rmqnb9ct13z',
     center: [-83.091, 42.350],
     zoom: 10.5,
     maxBounds: [[-83.427803, 42.085192], [-82.770451, 42.62023]]
@@ -44083,6 +44083,7 @@ map.on('load', function () {
         switch (ds.source.type) {
             case "socrata":
                 var url = _socrata2.default.makeURL(ds.source.url, 'geojson', ds.source.params);
+                console.log(url);
                 _map2.default.addGeoJsonSource(map, ds.slug, url);
                 break;
             case "esri":
