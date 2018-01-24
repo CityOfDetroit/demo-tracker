@@ -1,44 +1,68 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset='utf-8' />
   <title></title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.40.1/mapbox-gl.css' rel='stylesheet' />
-  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:200,400,600,800" rel="stylesheet">  
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:200,400,600,800" rel="stylesheet">
   <link href='./styles/main.css' rel='stylesheet' />
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107915075-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
     gtag('js', new Date());
     gtag('config', 'UA-107915075-1');
   </script>
 </head>
+
 <body>
   <div id='map'></div>
   <div id='legend'>
-      <span id='legend-map-title'>Neighborhood Improvement Tracker</span>
-      <div id='legend-toggle'></div>
-      <div id='legend-toggleable'>
-          <h5>Search for an address or intersection:</h4>
-            <input id="locate" name="search" placeholder="ex '8515 W Chicago', 'Van Dyke & Harper'" type="text">
-            <div id='layers'>
-              <div id='category-residential'>
-                <h5>Residential Demolitions</h5>
-              </div>
-              <div id='category-commercial'>
-                <h5>Commercial Demolitions</h5>
-              </div>
-              <div id='category-dlba'>
-                <h5>DLBA Sold Properties</h5>
-              </div>
-              <div id='category-permits'>
-                <h5>Building Permits</h5>
-              </div>
+    <span id='legend-map-title'>Neighborhood Improvement Tracker</span>
+    <div id='legend-toggle'></div>
+    <div id='legend-toggleable'>
+      <h5>Search for an address or intersection:</h4>
+        <input id="locate" name="search" placeholder="ex '8515 W Chicago', 'Van Dyke & Harper'" type="text">
+        <div id='layers'>
+          <div id='category-residential'>
+            <h5>Residential Demolitions</h5>
+          </div>
+          <div id='category-commercial'>
+            <h5>Commercial Demolitions</h5>
+          </div>
+          <div id='category-dlba-sold'>
+            <h5>DLBA Sold Properties</h5>
+          </div>
+          <div id='category-dlba-owned'>
+            <h5>DLBA Owned Properties</h5>
+            <div class="layer-item">
+              <div class="legend-icon" style="width: 13px;height: 13px;background: rgba(125,197,161,0.64); border:1px solid;"></div>
+              <input type="checkbox" class="layer-toggle" id="dlba-parcels-vacant" value="dlba-parcels-vacant">
+              <label for="dlba-parcels-vacant">DLBA Owned Vacant Land</label>
+              <a href="https://data.detroitmi.gov/d/xpyj-nvij">(source)</a>
+              </label>
             </div>
-      </div>
+            <div class="layer-item">
+              <div class="legend-icon" style="width: 13px;height: 13px;background: rgba(197,135,191,1); border: 1px solid;"></div>
+              <input type="checkbox" class="layer-toggle" id="dlba-parcels-sidelot" value="dlba-parcels-sidelot">
+              <label for="dlba-parcels-sidelot">Side Lots For Sale</label>
+              <a href="https://data.detroitmi.gov/d/xpyj-nvij">(source)</a>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div id='category-permits'>
+          <h5>Building Permits</h5>
+        </div>
+    </div>
+  </div>
   </div>
   <script src="./bundle.js"></script>
 </body>
+
 </html>
