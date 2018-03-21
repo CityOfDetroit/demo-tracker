@@ -53,25 +53,39 @@ const Map = {
       })
   },
 
-  makePopup: function(map, features, yaml) {
+  makePopup: function(map, features, yaml, coords) {
     let items = []
+
+    console.log(features)
     
     features.forEach(f => {
-      let template = yaml[f.layer.source].popup
-      let ft_html =`
-      <h4>${template.title}</h4>
-      ${template.columns.map(c => {
-        return `<i>${c.name}</i>: ${Helpers.formatPopupValue(eval(`f.properties.${c.field}`), c.type)} `}).join("<br/>")}
-      `
-      items.push(ft_html)
+      if(f.layer.id !== 'dlba-parcels-vacant') {
+        let template = yaml[f.layer.source].popup
+        let ft_html =`
+        <h4>${template.title}</h4>
+        ${template.columns.map(c => {
+          return `<i>${c.name}</i>: ${Helpers.formatPopupValue(eval(`f.properties.${c.field}`), c.type)} `}).join("<br/>")}
+        `
+        items.push(ft_html)
+      }
+      else {
+        items.push(`
+          <b>${f.properties.status}</b>
+          <br/>
+          <i>Address</i>: ${f.properties.address}
+          <br/>
+          <i>Parcel ID</i>: ${f.properties.parcel_id}
+          <br/>
+          <a href="https://cityofdetroit.github.io/parcel-viewer/${f.properties.parcel_id}/">More parcel information</a>`)
+      }
     })
 
     let popup = new mapboxgl.Popup()
-      .setLngLat(features[0].geometry.coordinates)
+      .setLngLat(coords)
       .setHTML(`${items.join("<hr/>")}`)
       .addTo(map);
     return popup
-  }
+  },
 }
 
 export default Map;

@@ -39,7 +39,7 @@ const ds = yaml.load('datasets.yml')
 map.on('load', function() {
 
     Map.addHighlightLayer(map)
-    let interactiveLayers = []
+    let interactiveLayers = ['dlba-parcels-vacant']
 
     // loop through datasets
     _.each(ds, (ds => {
@@ -140,7 +140,7 @@ map.on('load', function() {
         }
         let features = map.queryRenderedFeatures(e.point, { layers: interactiveLayers })
         if (features.length > 0) {
-            Map.makePopup(map, features, ds)
+            Map.makePopup(map, features, ds, e.lngLat)
         }
     })
 })

@@ -44075,7 +44075,7 @@ var ds = yaml.load('datasets.yml');
 map.on('load', function () {
 
     _map2.default.addHighlightLayer(map);
-    var interactiveLayers = [];
+    var interactiveLayers = ['dlba-parcels-vacant'];
 
     // loop through datasets
     _.each(ds, function (ds) {
@@ -44174,7 +44174,7 @@ map.on('load', function () {
         }
         var features = map.queryRenderedFeatures(e.point, { layers: interactiveLayers });
         if (features.length > 0) {
-            _map2.default.makePopup(map, features, ds);
+            _map2.default.makePopup(map, features, ds, e.lngLat);
         }
     });
 });
@@ -44247,18 +44247,24 @@ var Map = {
     });
   },
 
-  makePopup: function makePopup(map, features, yaml) {
+  makePopup: function makePopup(map, features, yaml, coords) {
     var items = [];
 
+    console.log(features);
+
     features.forEach(function (f) {
-      var template = yaml[f.layer.source].popup;
-      var ft_html = '\n      <h4>' + template.title + '</h4>\n      ' + template.columns.map(function (c) {
-        return '<i>' + c.name + '</i>: ' + _helpers2.default.formatPopupValue(eval('f.properties.' + c.field), c.type) + ' ';
-      }).join("<br/>") + '\n      ';
-      items.push(ft_html);
+      if (f.layer.id !== 'dlba-parcels-vacant') {
+        var template = yaml[f.layer.source].popup;
+        var ft_html = '\n        <h4>' + template.title + '</h4>\n        ' + template.columns.map(function (c) {
+          return '<i>' + c.name + '</i>: ' + _helpers2.default.formatPopupValue(eval('f.properties.' + c.field), c.type) + ' ';
+        }).join("<br/>") + '\n        ';
+        items.push(ft_html);
+      } else {
+        items.push('\n          <b>' + f.properties.status + '</b>\n          <br/>\n          <i>Address</i>: ' + f.properties.address + '\n          <br/>\n          <i>Parcel ID</i>: ' + f.properties.parcel_id + '\n          <br/>\n          <a href="https://cityofdetroit.github.io/parcel-viewer/' + f.properties.parcel_id + '/">More parcel information</a>');
+      }
     });
 
-    var popup = new mapboxgl.Popup().setLngLat(features[0].geometry.coordinates).setHTML('' + items.join("<hr/>")).addTo(map);
+    var popup = new mapboxgl.Popup().setLngLat(coords).setHTML('' + items.join("<hr/>")).addTo(map);
     return popup;
   }
 };
