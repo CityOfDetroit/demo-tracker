@@ -228,10 +228,10 @@ comm_demo:
       - field: demo_date
         name: Demolition Date
         type: date
-      - field: total_cost
+      - field: total_demo_cost
         name: Demo Contractor's Price
         type: money
-      - field: contractor_name
+      - field: demolition_contractor
         type: text
         name: Contractor
 own_it_now:
