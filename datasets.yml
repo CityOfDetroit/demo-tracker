@@ -1,3 +1,53 @@
+partner:
+  slug: partner
+  name: Partner 
+  category: dlba-sold
+  source:
+    type: socrata
+    url: 3gn4-ru82
+    params:
+      $select: address, parcel_id, property_class, actual_closing_date, program, neighborhood, council_district, location
+      $limit: 100000
+  layers:
+    - name: Partner & Project Sales
+      type: circle
+      layout:
+        visibility: none
+      paint:
+        circle-color: steelblue
+        circle-radius:
+          stops:
+            - [9, 0]
+            - [9.1, .5]
+            - [14, 3]
+            - [16, 6]
+            - [19, 15]
+        circle-opacity:
+          stops:
+            - [9, 0]
+            - [9.1, 0.5]
+            - [14, 0.75]
+            - [20, 0.95]
+      legend:
+        - "border-radius: 50%;"
+        - "width: 15px;"
+        - "height: 15px;"
+        - "background: steelblue;"
+  popup:
+    title: Partner/Project Sale
+    columns:
+    - field: address
+      name: Address
+      type: text
+    - field: parcel_id
+      name: Parcel ID
+      type: text
+    - field: actual_closing_date
+      name: Closing Date
+      type: date
+    - field: program
+      name: Program
+      type: text
 res_demos:
   slug: res_demos
   name: Residential Demolitions
@@ -55,7 +105,7 @@ contracted_demos:
     url: nfx3-ihbp
     params:
       $select: address, contractor_name, price, demolish_by_date, commercial_building, location
-      $limit: 10000
+      $limit: 1000
   layers:
     - name: Contracted
       type: symbol
@@ -141,7 +191,7 @@ comm_demo:
     type: socrata
     url: niaj-6fdd
     params:
-      $select: location, address, parcel_id, status, total_demo_cost, demo_date, demolition_contractor
+      $select: location, address, parcel_id, status, total_cost, demo_date, contractor_name
       $limit: 10000
   layers:
     - name: Completed
@@ -228,10 +278,10 @@ comm_demo:
       - field: demo_date
         name: Demolition Date
         type: date
-      - field: total_demo_cost
+      - field: total_cost
         name: Demo Contractor's Price
         type: money
-      - field: demolition_contractor
+      - field: contractor_name
         type: text
         name: Contractor
 own_it_now:
