@@ -62,7 +62,7 @@ map.on('load', function() {
             l.layer_name = `${ds.slug}_${Helpers.makeSlug(l.name)}`;
             interactiveLayers.push(l.layer_name)
             let catUl = document.querySelector(`#category-${ds.category}`)
-            Legend.addLayer(catUl, l, ds.source.url)                        
+            Legend.addLayer(catUl, l, ds.source.link)                        
             map.addLayer({
                 "id": l.layer_name,
                 "type": l.type,
