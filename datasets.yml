@@ -108,7 +108,7 @@ contracted_demos:
     link: https://data.detroitmi.gov/d/nfx3-ihbp
     params:
       $select: address, contractor_name, price, demolish_by_date, commercial_building, location
-      $limit: 1000
+      $limit: 10000
   layers:
     - name: Contracted
       type: symbol
