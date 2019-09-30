@@ -47,12 +47,10 @@ map.on('load', function() {
         switch (ds.source.type) {
             case "socrata":
                 let url = Socrata.makeURL(ds.source.url, 'geojson', ds.source.params)
-                console.log(url)
-                Map.addGeoJsonSource(map, ds.slug, url)
+                Map.addGeoJsonSource(map, ds.slug, url);
                 break
-            case "esri":
-                // let url = Esri.makeURL(...)
-                // Map.addGeoJsonSource(map, ds.slug, url)
+            case "mapbox":
+                Map.addMapboxSource(map, ds.slug, ds.source.url);
                 break
         }
 
@@ -62,14 +60,21 @@ map.on('load', function() {
             l.layer_name = `${ds.slug}_${Helpers.makeSlug(l.name)}`;
             interactiveLayers.push(l.layer_name)
             let catUl = document.querySelector(`#category-${ds.category}`)
-            Legend.addLayer(catUl, l, ds.source.link)                        
-            map.addLayer({
+            Legend.addLayer(catUl, l, ds.source.link)  
+            let layerObject = {
                 "id": l.layer_name,
                 "type": l.type,
                 "source": ds.slug,
                 "layout": l.layout,
                 "paint": l.paint
-            },
+            }
+            if (ds.source.type === 'mapbox') {
+                layerObject['source-layer'] = ds.source.layer || ds.source.url.split('.')[1] + '_mapbox'
+            }
+            console.log(layerObject)
+            
+            
+            map.addLayer(layerObject,
             // insert before the roads layer 
             'road-subway')
             // apply filter if exists

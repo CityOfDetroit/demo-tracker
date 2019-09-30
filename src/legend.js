@@ -7,7 +7,6 @@ const Legend = {
     div.classList = ['layer-item']
     if (layer.legend) {
       let style = layer.legend.join("")
-      console.log(style)
     }
     div.innerHTML = `
           <div id="${layer.layer_name}_icon" class="legend-icon" style="${layer.legend ? layer.legend.join("") : ''}"> </div>

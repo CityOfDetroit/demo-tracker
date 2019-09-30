@@ -3,10 +3,22 @@ import Helpers from './helpers.js'
 
 const Map = {
   addGeoJsonSource: function(map, slug, url) {
-    map.addSource(slug, {
+    let source = {
       "type": "geojson",
       "data": url
-    })
+    }
+    console.log(source)
+    map.addSource(slug, source)
+  },
+
+  addMapboxSource: function(map, slug, url) {
+    let source = {
+      "type": "vector",
+      "url": "mapbox://" + url
+    }
+    console.log(source)
+
+    map.addSource(slug, source)
   },
 
   addHighlightLayer: function(map) {
@@ -54,10 +66,7 @@ const Map = {
   },
 
   makePopup: function(map, features, yaml, coords) {
-    let items = []
-
-    console.log(features)
-    
+    let items = []    
     features.forEach(f => {
       if(f.layer.id !== 'dlba-parcels-vacant') {
         let template = yaml[f.layer.source].popup
