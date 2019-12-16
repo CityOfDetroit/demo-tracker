@@ -135,42 +135,42 @@ contracted_demos:
       - field: price
         type: money
         name: Demo Contractor Price
-demo_pipeline:
-  slug: demo_pipeline
-  name: Demolition Pipeline
-  category: residential
-  source:
-    type: mapbox
-    url: cityofdetroit.demo_pipeline
-  layers:
-    - name: Pipeline
-      type: symbol
-      filter: ['in', 'commercial_building', 'No']
-      layout:
-        visibility: none
-        icon-image: red_square-11
-        icon-size:
-          stops:
-            - [9, 0.1]
-            - [15, 0.75]
-            - [19, 2]
-        icon-allow-overlap: true
-      paint:
-        icon-opacity:
-          stops:
-            - [9, 0.4]
-            - [15, 0.75]
-            - [19, 1]
-      legend:
-        - "width: 15px;"
-        - "height: 15px;"
-        - "background: red;"
-  popup:
-    title: Demo Pipeline
-    columns:
-      - field: address
-        type: text
-        name: Address
+# demo_pipeline:
+#   slug: demo_pipeline
+#   name: Demolition Pipeline
+#   category: residential
+#   source:
+#     type: mapbox
+#     url: cityofdetroit.demo_pipeline
+#   layers:
+#     - name: Pipeline
+#       type: symbol
+#       filter: ['in', 'commercial_building', 'No']
+#       layout:
+#         visibility: none
+#         icon-image: red_square-11
+#         icon-size:
+#           stops:
+#             - [9, 0.1]
+#             - [15, 0.75]
+#             - [19, 2]
+#         icon-allow-overlap: true
+#       paint:
+#         icon-opacity:
+#           stops:
+#             - [9, 0.4]
+#             - [15, 0.75]
+#             - [19, 1]
+#       legend:
+#         - "width: 15px;"
+#         - "height: 15px;"
+#         - "background: red;"
+#   popup:
+#     title: Demo Pipeline
+#     columns:
+#       - field: address
+#         type: text
+#         name: Address
 commercial_demos:
   slug: commercial_demos
   name: Commercial Demolitions
@@ -227,30 +227,30 @@ commercial_demos:
         - "border-right: 8px solid transparent;"
         - "border-bottom: 13px solid orange;"
         - "margin-bottom: 1px;"
-    - name: Pipeline
-      type: symbol
-      filter: ['==', 'status', 'Demo Pipeline']
-      layout:
-        visibility: none
-        icon-image: red_triangle-11
-        icon-size:
-          stops:
-            - [9, 0.2]
-            - [15, 1]
-            - [19, 4]
-        icon-allow-overlap: true
-      paint:
-        icon-opacity:
-          stops:
-            - [9, 0.5]
-            - [18, 1]
-      legend:
-        - "width: 0;"
-        - "height: 0;"
-        - "border-left: 8px solid transparent;"
-        - "border-right: 8px solid transparent;"
-        - "border-bottom: 13px solid red;"
-        - "margin-bottom: 1px;"
+    # - name: Pipeline
+    #   type: symbol
+    #   filter: ['==', 'status', 'Demo Pipeline']
+    #   layout:
+    #     visibility: none
+    #     icon-image: red_triangle-11
+    #     icon-size:
+    #       stops:
+    #         - [9, 0.2]
+    #         - [15, 1]
+    #         - [19, 4]
+    #     icon-allow-overlap: true
+    #   paint:
+    #     icon-opacity:
+    #       stops:
+    #         - [9, 0.5]
+    #         - [18, 1]
+    #   legend:
+    #     - "width: 0;"
+    #     - "height: 0;"
+    #     - "border-left: 8px solid transparent;"
+    #     - "border-right: 8px solid transparent;"
+    #     - "border-bottom: 13px solid red;"
+    #     - "margin-bottom: 1px;"
   popup:
     title: Commercial Demolition
     columns:
