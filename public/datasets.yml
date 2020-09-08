@@ -5,6 +5,7 @@ partner:
   source:
     type: mapbox
     url: cityofdetroit.partner_sales
+    link: https://data.detroitmi.gov/datasets/dlba-partner-sales
   layers:
     - name: Partner & Project Sales
       type: circle
@@ -52,6 +53,7 @@ completed_demos:
   source:
     type: mapbox
     url: cityofdetroit.completed_demos
+    link: https://data.detroitmi.gov/datasets/completed-residential-demolitions
   layers:
     - name: Completed
       type: symbol
@@ -97,6 +99,7 @@ contracted_demos:
   source:
     type: mapbox
     url: cityofdetroit.contracted_demos
+    link: https://data.detroitmi.gov/datasets/demolitions-under-contract
   layers:
     - name: Contracted
       type: symbol
@@ -178,6 +181,7 @@ commercial_demos:
   source: 
     type: mapbox
     url: cityofdetroit.commercial_demos
+    link: https://data.detroitmi.gov/datasets/commercial-demolitions
   layers:
     - name: Completed
       type: symbol
@@ -276,6 +280,7 @@ own_it_now_sold:
   source:
     type: mapbox
     url: cityofdetroit.own_it_now_sold
+    link: https://data.detroitmi.gov/datasets/own-it-now-sales
   layers:
     - name: Own It Now
       type: circle
@@ -323,6 +328,7 @@ auction_sold:
   source:
     type: mapbox
     url: cityofdetroit.auction_sold
+    link: https://data.detroitmi.gov/datasets/auction-sales
   layers:
     - name: Closed Auctions
       type: circle
@@ -370,6 +376,7 @@ side_lots_sold:
   source:
     type: mapbox
     url: cityofdetroit.side_lots_sold
+    link: https://data.detroitmi.gov/datasets/side-lots-sold
   layers:
     - name: Side Lots
       type: circle
@@ -414,6 +421,7 @@ for_sale:
   source:
     type: mapbox
     url: cityofdetroit.for_sale
+    link: https://data.detroitmi.gov/datasets/dlba-for-sale
   layers:
     - name: Currently for sale
       type: circle

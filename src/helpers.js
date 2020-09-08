@@ -16,7 +16,7 @@ const Helpers = {
         return returnVal
         break;
       case "date":
-        if (value != 'null') {
+        if (value) {
           return moment(value).format('ll')          
         }
         else { return 'n/a' }

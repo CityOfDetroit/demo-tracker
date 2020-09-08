@@ -69,7 +69,7 @@ map.on('load', function() {
                 "paint": l.paint
             }
             if (ds.source.type === 'mapbox') {
-                layerObject['source-layer'] = ds.source.layer || ds.source.url.split('.')[1] + '_mapbox'
+                layerObject['source-layer'] = ds.source.layer || ds.source.url.split('.')[1]
             }
             console.log(layerObject)
             
