@@ -23,7 +23,7 @@
   "homepage": "https://github.com/CityOfDetroit/demo-tracker",
   "dependencies": {
     "lodash": "^4.17.4",
-    "mapbox-gl": "^0.40.1",
+    "mapbox-gl": "^2.13.0",
     "moment": "^2.18.1",
     "yamljs": "^0.3.0"
   },
